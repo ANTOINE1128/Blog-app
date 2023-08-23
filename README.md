@@ -25,7 +25,7 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 Catalog of My Things <a name="about-project"></a>
+# 📖 blog-app <a name="about-project"></a>
 
 **Catalog of My Things:** The blog-app is a blog website, show the list of posts and empower readers to interact with them by adding comments and liking posts.
 
