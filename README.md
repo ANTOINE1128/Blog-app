@@ -69,8 +69,8 @@ git clone https://github.com/ANTOINE1128/Blog-app.git
 `rails s`
 
 ### RSpec Tests
-
- rspec spec
+to run the tests run the following command
+ `rspec spec`
 
 
 
