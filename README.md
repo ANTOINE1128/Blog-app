@@ -61,11 +61,17 @@ In order to run this project, you need:
 2. Clone this repo 
 git clone https://github.com/ANTOINE1128/Blog-app.git
 
-### RSpec Tests
-`
-rspec spec
+### installation
+- to install this project,run the following command 
+  `bundle install`
+### usage 
+- to run this project on your local machine run
+`rails s`
 
-`
+### RSpec Tests
+
+ rspec spec
+
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
