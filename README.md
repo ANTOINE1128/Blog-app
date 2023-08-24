@@ -72,8 +72,6 @@ git clone https://github.com/ANTOINE1128/Blog-app.git
 to run the tests run the following command
  `rspec spec`
 
-
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- AUTHORS -->
