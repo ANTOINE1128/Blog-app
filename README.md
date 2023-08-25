@@ -26,7 +26,7 @@
 
 # 📖 blog-app <a name="about-project"></a>
 
-**Catalog of My Things:** The blog-app is a blog website, show the list of posts and empower readers to interact with them by adding comments and liking posts.
+**blog-app** The blog-app is a blog website that shows the list of posts and empowers readers to interact with them by adding comments and liking posts.
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -45,42 +45,43 @@
 - [x] **Preserve Data**
 - [x] **Unit Tests**
 
-
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
-## Getting Started
+## Getting Started <a name="getting-started"></a>
 
 To get a local copy up and running, follow these steps.
 
 ### Prerequisites
-In order to run this project you need:
-  * A basic understanding of Ruby,Ruby on rails and Git
-### Usage
-1. Install Ruby on rails
+In order to run this project, you need:
+- A basic understanding of Ruby, Ruby on Rails, and Git
+
+### Setup
+1. Install Ruby on Rails
 2. Clone this repo 
-```
 git clone https://github.com/ANTOINE1128/Blog-app.git
-```
+
+### installation
+- to install this project,run the following command 
+  `bundle install`
+### usage 
+- to run this project on your local machine run
+`rails s`
 
 ### RSpec Tests
-
-```
- rspec spec
-```
+to run the tests run the following command
+ `rspec spec`
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- AUTHORS -->
 
-## 👥 Author <a name="author"></a>
+## 👥 Author <a name="authors"></a>
 
-👤 : **Antoine Makdessy**
+👤: **Antoine Makdessy**
 
 - GitHub: [@ANTOINE1128](https://github.com/ANTOINE1128)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/antoine-makdessy/)
-
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -88,7 +89,7 @@ git clone https://github.com/ANTOINE1128/Blog-app.git
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ ] **Advance UI**
+- [ ] **Advanced UI**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -114,7 +115,7 @@ Please support this project and be a part of something meaningful and impactful.
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
-Grateful to all for inspiring codebase, your dedication and creativity made a lasting impact on our success. Thank you!
+Grateful to all for inspiring codebase, your dedication, and creativity made a lasting impact on our success. Thank you!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -127,7 +128,6 @@ Please feel free to fork and reuse this repository for your projects.
 - **Is it okay to improve this repository? Will my changes be accepted?**
 
 We welcome any improvements or new ideas. If your changes are good and align with the project's goals, we would be happy to incorporate them.
-
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
