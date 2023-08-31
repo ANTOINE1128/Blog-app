@@ -27,7 +27,7 @@ RSpec.describe User, type: :model do
       user.posts.create(title: 'Post 1', text: 'This is post 1.')
       user.posts.create(title: 'Post 2', text: 'This is post 2.')
 
-      recent_posts = user.recent_posts(10)
+      recent_posts = user.return_three_most_recent_post(10)
       expect(recent_posts).to eq(user.posts.order(created_at: :desc).limit(10))
     end
   end
