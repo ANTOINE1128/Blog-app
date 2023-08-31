@@ -6,7 +6,6 @@ describe Post, type: :request do
     @post = Post.create(author: @user, title: 'Let us go', text: 'This is the text for the post')
   end
 
-
   describe 'routes with post_controller' do
     it 'should render the index action correctly.' do
       get "/users/#{@user.id}/posts"
