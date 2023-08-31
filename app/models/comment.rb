@@ -1,10 +1,13 @@
 class Comment < ApplicationRecord
-  belongs_to :post
-  belongs_to :author, class_name: 'User', foreign_key: 'author_id'
+  belongs_to :author, foreign_key: 'author_id', class_name: 'User'
+  belongs_to :post, foreign_key: 'post_id'
+  attr_accessor :text
 
-  after_create :update_comment_counter
+  after_save :update_comments_counter_for_a_post
 
-  def update_comment_counter
+  private
+
+  def update_comments_counter_for_a_post
     post.update(comments_counter: post.comments.count)
   end
 end

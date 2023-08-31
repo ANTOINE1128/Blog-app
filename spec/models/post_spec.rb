@@ -53,12 +53,12 @@ RSpec.describe Post, type: :model do
     post = Post.new(title: 'Title', comments_counter: 0, likes_counter: 0, author:)
     post.save!
     author.reload
-    post.update_post_counter
+    post.update_author_posts_count
     author.reload
     expect(author.posts_counter).to eq(1)
   end
 
   it 'Check recent_comments, it should return 5 recent comments' do
-    expect(subject.recent_comments).to eq(subject.comments.order(created_at: :desc).limit(5))
+    expect(subject.five_most_recent_comments).to eq(subject.comments.order(created_at: :desc).limit(5))
   end
 end

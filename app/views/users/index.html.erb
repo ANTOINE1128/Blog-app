@@ -1,1 +1,8 @@
-<h1>Here are the list of users</h1>
+<h1>Names of all the users </h1>
+
+<% @users.each do |user| %>
+  Name: <%= user.name %>
+  Posts Counter: <%= user.posts_counter %>
+  Posts: <%= user.posts.inspect %>
+  <br>
+<% end %>

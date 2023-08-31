@@ -7,7 +7,7 @@ describe Post, type: :request do
   end
 
   describe 'routes with post_controller' do
-    it 'should render the index action correctly.' do
+    it 'should render the index action correctly' do
       get "/users/#{@user.id}/posts"
       expect(response).to be_successful
       expect(response).to render_template('posts/index')
@@ -17,6 +17,13 @@ describe Post, type: :request do
     it 'should render the index content correctly' do
       get "/users/#{@user.id}/posts"
       expect(response.body).to include('user page')
+    end
+
+    it 'should render the show action correctly' do
+      get "/users/#{@user.id}/posts/1"
+      expect(response).to be_successful
+      expect(response).to render_template('posts/show', layout: 'layouts/application')
+      expect(response.body).to include('this is your detail page')
     end
   end
 end
