@@ -8,7 +8,7 @@ describe Post, type: :request do
 
 
   describe 'routes with post_controller' do
-    it 'should render the index action correctly' do
+    it 'should render the index action correctly.' do
       get "/users/#{@user.id}/posts"
       expect(response).to be_successful
       expect(response).to render_template('posts/index')
