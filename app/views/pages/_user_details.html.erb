@@ -3,9 +3,7 @@
     <%= user.name %>
   </div>
   <div class="posts-count">
-    <%= pluralize(user.posts_counter, 'post') %>
-  </div>
-  <div class="bio">
-    <%= user.bio %>
+  number of posts
+    <%= user.posts_counter || 0 %>
   </div>
 </div>

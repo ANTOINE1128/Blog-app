@@ -15,14 +15,14 @@
 <% @three_recent_posts.each do |post| %>
     <div class="post bio">
       <h3>Post <%= raw "#" + post.id.to_s %></h3>
-      <p><%= post.text %></p>
+     <p><%= post.content%></p>
       <div class="post-intereactions">
         <span>Comments: <%= post.comments_counter %><br></span>
         <span>Likes: <%= post.likes_counter %></span>
       </div>
    </div>
 <% end %>
-<a href="<%= user_posts_path(@user) %>">
+<%= link_to user_posts_path(@user) do %>
   <button id="pagination">See all posts</button>
-</a>
+<% end %>
 </ul>
