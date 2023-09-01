@@ -1,1 +1,20 @@
-<h1>user page</h1>
+<h1> </h1>
+<a href="<%= users_path %>">
+  <button id="back-btn">⬅</button>
+</a>
+<ul>
+  <% @posts.each do |post| %>
+    <li>
+      <a href="<%= user_post_path(post.author, post) %>">
+        <div class="user-box">
+          <%= render partial: 'pages/user_photo', locals: { user: post.author } %>
+          <%= render partial: 'pages/user_details', locals: { user: post.author } %>
+        </div>
+      </a>
+    </li>
+  <% end %>
+</ul>
+<a href="<%= users_path %>" class="pagination">
+  <button class="btn" id="pagination">pagination</button>
+</a>
+</ul> 

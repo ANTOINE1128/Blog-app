@@ -1,8 +1,13 @@
-<h1>Names of all the users </h1>
-
-<% @users.each do |user| %>
-  Name: <%= user.name %>
-  Posts Counter: <%= user.posts_counter %>
-  Posts: <%= user.posts.inspect %>
-  <br>
-<% end %>
+<h1>Users</h1>
+<ul>
+  <% @users.each do |user| %>
+  <li>
+    <a href="<%= user_path(user) %>">
+      <div class="user-box">
+ <%= render partial: 'pages/user_photo', locals: { user: user } %>
+  <%= render partial: 'pages/user_details', locals: { user: user } %>
+     </div>
+  </a>
+  </li>
+  <% end %>
+</ul>
