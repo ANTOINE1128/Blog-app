@@ -20,11 +20,18 @@
 </div></li>
 <% @three_recent_posts.each do |post| %>
     <div class="post bio">
+      <a href='<%= user_post_path(@user.id) %>'>
       <h3>Post <%= raw "#" + post.id.to_s %></h3>
+      </a>
+
+
      <p><%= post.content%></p>
       <div class="post-intereactions">
-        <span>Comments: <%= post.comments_counter %><br></span>
-        <span>Likes: <%= post.likes_counter %></span>
+<a href='<%= new_user_post_comment_path(user_id: post.author_id, post_id: post.id)%>'>
+            <span class="btn btn-light">Comments:</span>
+          </a>
+          <button class= "btn btn-light" disabled>
+            <%= post.comments_counter%></button>        <span>Likes: <%= post.likes_counter %></span>
       </div>
    </div>
 <% end %>
