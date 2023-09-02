@@ -1,1 +1,24 @@
-<h1>user page</h1>
+<h1>Posts for a User</h1>
+<a href="<%= users_path %>">
+  <button id="back-btn">⬅</button>
+</a>
+
+<div class="user-box">
+  <%= render partial: 'pages/user_photo', locals: { user: @user } %>
+  <%= render partial: 'pages/user_details', locals: { user: @user } %>
+</div>
+
+<% @posts.each do |post| %>
+  <a href="<%= user_post_path(user_id: post.author.id, id: post.id) %>" class="list-group-item list-group-item-action mt-3">
+    <%= render partial: 'pages/post_partial', locals: { post: post } %>
+  </a>
+  <div class="container bg-light border rounded mt-3">
+    <% post.five_most_recent_comments.each do |comment| %>
+      <%= render partial: 'pages/comment_partial', locals: { comment: comment } %>
+    <% end %>
+  </div>
+<% end %>
+
+<a href="<%= users_path %>" class="pagination">
+  <button class="btn" id="pagination">Pagination</button>
+</a>

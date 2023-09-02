@@ -3,7 +3,7 @@ class Post < ApplicationRecord
   validates :comments_counter, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :likes_counter, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
-  attr_accessor :text, :title, :content, :comments_counter, :likes_counter
+  #  attr_accessor :text, :title, :content, :comments_counter, :likes_counter
 
   belongs_to :author, foreign_key: 'author_id', class_name: 'User'
   has_many :comments
