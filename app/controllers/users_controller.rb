@@ -5,7 +5,27 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @posts = 'posts'
     @three_recent_posts = @user.return_three_most_recent_post(3)
+  end
+
+  def new
+    @user = User.new
+  end
+
+  def create
+    @user = User.new(user_params)
+
+    if @user.save
+      redirect_to new_post_path, notice: 'User was successfully created. You can now create a new post.'
+    else
+      render :new
+    end
+    
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:name, :bio, :photo, :posts_counter)
   end
 end

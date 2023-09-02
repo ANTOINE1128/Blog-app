@@ -1,0 +1,15 @@
+<%= form_with(model: @user, local: true) do |form| %>
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+
+  <%= form.label :bio %>
+  <%= form.text_area :bio %>
+
+  <%= form.label :photo %>
+  <%= form.text_field :photo %>
+
+  <%= form.label :posts_counter %>
+  <%= form.number_field :posts_counter %>
+
+  <%= form.submit 'Create User' %>
+<% end %>
