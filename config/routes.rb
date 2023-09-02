@@ -1,14 +1,14 @@
 Rails.application.routes.draw do
   # Nested routes for users and their posts, comments, and likes
   resources :users, only: [:index, :show, :new, :create] do
-    resources :posts, only: [:index, :show, :create] do
+    resources :posts, only: [:index, :show, :new, :create] do
       resources :comments, only: [:new, :create]
       resources :likes, only: [:create, :destroy]
     end
   end
 
   # Routes for standalone posts (not nested under users)
-  resources :posts, only: [:new, :create]
+  # resources :posts, only: [:new, :create]
 
   # Root route to display a list of users
   root "users#index"
