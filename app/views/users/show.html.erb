@@ -21,24 +21,24 @@
 <% @three_recent_posts.each do |post| %>
     <div class="post bio">
       <a href='<%= user_post_path(@user.id) %>'>
-      <h3>Post <%= raw "#" + post.id.to_s %></h3>
+      <h3>Post <%= raw "#" + post.title %></h3>
       </a>
 
 
      <p><%= post.content%></p>
-      <div class="post-intereactions d-flex">
+     <div class="post-intereactions d-flex">
        <a href='<%= new_user_post_comment_path(user_id: post.author_id, post_id: post.id)%>'>
             <span class="btn btn-light">Comments:</span>
           </a>
           <button class= "btn btn-light" disabled>
             <%= post.comments_counter%></button>
-        <%= form_for(post.likes.new, url: user_post_likes_path(post.author, post)) do |f| %>
+        <%= form_for(post.likes.new, url: user_post_likes_path(user_id: post.author_id, post_id: post.id)) do |f| %>
             <%= f.hidden_field :author_id, value: @current_user %>
             <%= f.submit "Like:", class: "btn btn-light" %>
           <% end %>
-          <button class= "btn btn-light" disabled><%= post.likes_counter%></button>
-          </div>
-      </div>
+          <button class= "btn btn-light" disabled><%= post.likes_counter%></button> 
+     </div>
+     </div>
 <% end %>
 <%= link_to user_posts_path(@user) do %>
   <button id="pagination">See all posts</button>
