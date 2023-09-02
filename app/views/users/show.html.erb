@@ -26,14 +26,19 @@
 
 
      <p><%= post.content%></p>
-      <div class="post-intereactions">
-<a href='<%= new_user_post_comment_path(user_id: post.author_id, post_id: post.id)%>'>
+      <div class="post-intereactions d-flex">
+       <a href='<%= new_user_post_comment_path(user_id: post.author_id, post_id: post.id)%>'>
             <span class="btn btn-light">Comments:</span>
           </a>
           <button class= "btn btn-light" disabled>
-            <%= post.comments_counter%></button>        <span>Likes: <%= post.likes_counter %></span>
+            <%= post.comments_counter%></button>
+        <%= form_for(post.likes.new, url: user_post_likes_path(post.author, post)) do |f| %>
+            <%= f.hidden_field :author_id, value: @current_user %>
+            <%= f.submit "Like:", class: "btn btn-light" %>
+          <% end %>
+          <button class= "btn btn-light" disabled><%= post.likes_counter%></button>
+          </div>
       </div>
-   </div>
 <% end %>
 <%= link_to user_posts_path(@user) do %>
   <button id="pagination">See all posts</button>
