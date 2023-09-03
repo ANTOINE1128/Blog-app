@@ -10,7 +10,7 @@
 
 <% @posts.each do |post| %>
   <a href="<%= user_post_path(user_id: post.author.id, id: post.id) %>" class="list-group-item list-group-item-action mt-3">
-    <%= render partial: 'pages/post_partial', locals: { post: post } %>
+    <%= render partial: 'pages/post_partial', locals: { post: post, comments: post.five_most_recent_comments } %>
   </a>
   <div class="container bg-light border rounded mt-3">
     <% post.five_most_recent_comments.each do |comment| %>

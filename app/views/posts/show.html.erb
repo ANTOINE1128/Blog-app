@@ -1,4 +1,4 @@
-<a href="<%= user_posts_path(@post.author) %>"> 
+<a href="<%= user_posts_path(@post) %>"> 
   <button id="back-btn">⬅</button>
 </a>
 <h3>Post <%= "#" + @post.title %> by <%= @post.author.name %></h3>
@@ -8,7 +8,7 @@
           </a>
           <button class= "btn btn-light" disabled>
             <%= @post.comments_counter%></button>
-        <%= form_for(@post.likes.new, url: user_post_likes_path(user_id: @post.author_id, post_id: @post.id)) do |f| %>
+        <%= form_for(@post.likes.new, url: user_post_likes_path(author_id: @post.author_id, post_id: @post.id)) do |f| %>
   <%= f.hidden_field :author_id, value: @current_user.id %>
   <%= f.submit "Like:", class: "btn btn-light" %>
           <% end %>
