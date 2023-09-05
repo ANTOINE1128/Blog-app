@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   def new
-    @post = Post.find(params[:post_id])
+    @post = Post.includes(:comments).find(params[:post_id])
     @comment = Comment.new
     @user = @current_user
   end
@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new
     @user = User.find(params[:user_id]) # Get the user from params
-    @post = Post.find(params[:post_id])
+    @post = Post.includes(:comments).find(params[:post_id])
     @comment = @post.comments.new(comment_params.merge(author: @user))
 
     if @comment.save

@@ -2,8 +2,8 @@ class LikesController < ApplicationController
   before_action :like_params, only: [:create]
 
   def create
-    @user = User.find(params[:user_id])
-    @post = Post.find(params[:post_id])
+    @user = User.includes(posts: :comments).find(params[:user_id])
+    @post = Post.includes(:comments).find(params[:post_id])
     @like = Like.new(author_id: @user.id, post_id: @post.id)
     if @like.save
       flash[:notice] = 'Like was successfully created.'
