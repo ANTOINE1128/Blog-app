@@ -5,4 +5,3 @@ RSpec.describe 'hello world', type: :system do
     expect(page).to have_content ('hello world')
   end
 end
-

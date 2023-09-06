@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'User Index Page', type: :system do
   before do
     # You can set up any necessary data here, such as creating users
-    @user1 = User.create(name: 'John Doe', bio: 'Bio for John Doe', posts_counter: 5 , photo: 'john_doe.jpg')
+    @user1 = User.create(name: 'John Doe', bio: 'Bio for John Doe', posts_counter: 4 , photo: 'john_doe.jpg')
  
   end
 
