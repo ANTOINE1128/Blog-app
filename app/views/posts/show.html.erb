@@ -6,6 +6,8 @@
        <a href='<%= new_user_post_comment_path(author_id: @post.author_id, post_id: @post.id)%>'>
             <span class="btn btn-light">Comments:</span>
           </a>
+          <h1><%= @post.title %><h1> 
+
           <button class= "btn btn-light" disabled>
             <%= @post.comments_counter%></button>
         <%= form_for(@post.likes.new, url: user_post_likes_path(author_id: @post.author_id, post_id: @post.id)) do |f| %>

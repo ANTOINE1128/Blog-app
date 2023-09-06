@@ -14,21 +14,21 @@ RSpec.describe 'User Show Page', type: :system do
       title: 'Fourth Post by John',
       content: 'Content of the fourth post by John',
       author_id: @user1.id,
-      comments_counter: 6,
+      comments_counter: 0,
       likes_counter: 0
     )
     @post2 = @user1.posts.create(
       title: 'Third Post by John',
       content: 'Content of the third post by John',
       author_id: @user1.id,
-      comments_counter: 1,
+      comments_counter: 0,
       likes_counter: 0
     )
     @post3 = @user1.posts.create(
       title: 'Second Post by John',
       content: 'Content of the second post by John',
       author_id: @user1.id,
-      comments_counter: 1,
+      comments_counter: 0,
       likes_counter: 0
     )
   end

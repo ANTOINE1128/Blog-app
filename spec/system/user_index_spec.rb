@@ -46,7 +46,7 @@ RSpec.describe 'User Index Page', type: :system do
     visit users_path
   
     # Get the user_id of @user1
-    user_id = @user1.id
+    user_id = @user1
   
     # Find the user link by using the user_id
     user_link = find("a[href='#{user_path(1)}']", visible: :all)
