@@ -32,6 +32,8 @@ user1 = User.create(name: 'John Doe', bio: 'Bio for John Doe', posts_counter: 4,
   )
   
   # Create Likes
+  like1 = Like.create(author: user1, post: post1)
 
-
+  like2 = Like.create(author: user1, post: post2)
+  
 puts 'Seed data created!'
