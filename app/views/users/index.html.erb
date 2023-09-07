@@ -4,11 +4,11 @@
   <li>
     <a href="<%= user_path(user) %>">
       <div class="user-box">
- <%= render partial: 'pages/user_photo', locals: { user: user } %>
-  <%= render partial: 'pages/user_details', locals: { user: user } %>
-     </div>
-  <br>
-  </a>
+     <%= render partial: 'pages/user_photo', locals: { user: user } %>
+     <%= render partial: 'pages/user_details', locals: { user: user } %>
+      </div>
+      <br>
+      </a> 
   </li>
   <% end %>
 </ul>
