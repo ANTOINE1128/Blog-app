@@ -76,7 +76,7 @@ to run the tests run the following command
 
 <!-- AUTHORS -->
 
-## 👥 Author <a name="authors"></a>
+## 👥 Authors <a name="authors"></a>
 
 👤: **Antoine Makdessy**
 

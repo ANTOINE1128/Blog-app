@@ -1,64 +1,40 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
-  subject do
-    @user = User.create(name: 'Tom & Jerry', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Best friend',
-                        posts_counter: 12)
-    @post = Post.create(title: 'Physics', text: 'This is not my first post', comments_counter: 10, likes_counter: 10,
-                        author: @user)
+  it 'validates presence of title' do
+    post = Post.new(title: nil)
+    expect(post).to_not be_valid
   end
 
-  before { subject.save }
-
-  it 'title should be present' do
-    subject.title = nil
-    expect(subject).to_not be_valid
+  it 'validates length of title' do
+    post = Post.new(title: 'a' * 251)
+    expect(post).to_not be_valid
   end
 
-  it 'title should not be empty' do
-    subject.title = ' '
-    expect(subject).to_not be_valid
+  it 'validates numericality of comments_counter' do
+    post = Post.new(comments_counter: -1)
+    expect(post).to_not be_valid
   end
 
-  it 'title should have valid value' do
-    expect(subject.title).to eql 'Physics'
+  it 'validates numericality of likes_counter' do
+    post = Post.new(likes_counter: -1)
+    expect(post).to_not be_valid
   end
 
-  it 'text should have valid value' do
-    expect(subject.text).to eql 'This is not my first post'
-  end
-
-  it 'comments_counter must be integer' do
-    subject.comments_counter = 12
-    expect(subject).to be_valid
-  end
-
-  it 'comments_counter must not be less than 0' do
-    subject.comments_counter = -1
-    expect(subject).to_not be_valid
-  end
-
-  it 'likes_counter must be integer' do
-    subject.likes_counter = 12
-    expect(subject).to be_valid
-  end
-
-  it 'likes_counter must not be less than 0' do
-    subject.likes_counter = -1
-    expect(subject).to_not be_valid
-  end
-
-  it 'Check the update_post_counter method' do
+  it 'increments the author posts_counter by 1' do
     author = User.create!(name: 'John Doe', posts_counter: 0)
     post = Post.new(title: 'Title', comments_counter: 0, likes_counter: 0, author:)
-    post.save!
-    author.reload
-    post.update_author_posts_count
-    author.reload
-    expect(author.posts_counter).to eq(1)
+    expect { post.save! }.to change { author.reload.posts_counter }.by(1)
   end
 
-  it 'Check recent_comments, it should return 5 recent comments' do
-    expect(subject.five_most_recent_comments).to eq(subject.comments.order(created_at: :desc).limit(5))
+  it 'returns the five most recent comments' do
+    author = User.create!(name: 'John Doe', posts_counter: 0)
+    post = Post.create!(title: 'Title', comments_counter: 0, likes_counter: 0, author:)
+    older_comments = 6.times.map { Comment.create!(post:, text: 'Old comment', author:) }
+    recent_comment = Comment.create!(post:, text: 'Recent comment', author:)
+
+    expect(post.five_most_recent_comments).to include(recent_comment)
+    expect(post.five_most_recent_comments.length).to eq(5)
+    expect(post.five_most_recent_comments).to_not include(older_comments.first)
   end
 end

@@ -1,37 +1,33 @@
 class PostsController < ApplicationController
   def index
-    @user = User.find(params[:user_id])
-    @posts = @user.posts
+    @user = User.includes(posts: %i[comments likes]).find(params[:user_id])
   end
 
   def show
-    @posts = Post.all
-    @post = Post.find params[:id]
-    @post_id = @posts.index(@post) + 1
+    @post = Post.find(params[:id])
+    @user = User.find(@post.author_id)
+    @comments = @post.comments
+    @current_like = @post.likes.find_by(author_id: current_user.id)
   end
 
   def new
-    @post = Post.new
-    @user = User.find(params[:user_id])
-    @posts = @user.posts.order(created_at: :asc)
+    @post = current_user.posts.new
   end
 
   def create
-    set_current_user
-    @post = set_current_user.posts.build(post_params)
+    @post = current_user.posts.new(post_params)
     @post.comments_counter = 0
     @post.likes_counter = 0
-
     if @post.save
-      redirect_to user_post_path(@current_user.id, @post.id), notice: 'Post was successfully Created'
+      redirect_to user_post_path(current_user, @post)
     else
-      render :new
+      render 'new'
     end
   end
 
   private
 
   def post_params
-    params.require(:post).permit(:title, :content)
+    params.require(:post).permit(:title, :text)
   end
 end

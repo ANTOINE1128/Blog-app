@@ -1,38 +1,23 @@
 require 'rails_helper'
 
-describe UsersController, type: :request do
-  before do
-    @user = User.create(name: 'Sam', photo: 'photo.url', bio: 'Excellent', posts_counter: 0)
-  end
-
-  describe 'GET #index' do
-    it 'responds with success' do
-      get '/users'
+RSpec.describe 'Users', type: :request do
+  describe 'GET /index' do
+    it 'returns a success response' do
+      get users_path
       expect(response).to have_http_status(:success)
-    end
-
-    it 'renders the index template' do
-      get '/users'
-      expect(response).to render_template('users/index')
-      expect(response).to render_template(layout: 'layouts/application')
-    end
-
-    it 'assigns @users with all users' do
-      get '/users'
-      expect(assigns(:users)).to eq(User.all)
+      expect(response.body).to include('This is a list of users')
+      expect(response).to render_template(:index)
     end
   end
 
-  describe 'GET #show' do
-    it 'responds with success' do
-      get "/users/#{@user.id}"
+  describe 'GET /show' do
+    it 'returns a success response' do
+      user = User.create!(name: 'Name',
+                          photo: 'https://image.com/image.jpg', posts_counter: 0)
+      get user_path(user)
       expect(response).to have_http_status(:success)
-    end
-
-    it 'renders the show template' do
-      get "/users/#{@user.id}"
-      expect(response).to render_template('users/show')
-      expect(response).to render_template(layout: 'layouts/application')
+      expect(response.body).to include('Here is detail of a specific user')
+      expect(response).to render_template(:show)
     end
   end
 end

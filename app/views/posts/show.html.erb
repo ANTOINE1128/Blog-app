@@ -1,26 +1,39 @@
-<a href="<%= user_posts_path(@post) %>"> 
-  <button id="back-btn">⬅</button>
-</a>
-<h3>Post <%= "#" + @post.title %> by <%= @post.author.name %></h3>
- <div class="post-intereactions d-flex">
-       <a href='<%= new_user_post_comment_path(author_id: @post.author_id, post_id: @post.id)%>'>
-            <span class="btn btn-light">Comments:</span>
-          </a>
-          <button class= "btn btn-light" disabled>
-            <%= @post.comments_counter%></button>
-        <%= form_for(@post.likes.new, url: user_post_likes_path(author_id: @post.author_id, post_id: @post.id)) do |f| %>
-  <%= f.hidden_field :author_id, value: @current_user.id %>
-  <%= f.submit "Like:", class: "btn btn-light" %>
-          <% end %>
-          <button class= "btn btn-light" disabled><%= @post.likes_counter%></button> 
-     </div>
-<p><%= @post.content %></p>
-<h3>Comments:</h3>
-<% @post.comments.each do |comment| %>
-  <div class="post-comments">
-    <span><%= comment.author.name %>:</span>
-    
-    <span><%= comment.text %></span>
+<h1>Here is detail of a post for a specific user</h1>
+<div class="post-detail-row">
+  <div class="post-title">
+    <div class="title-author">
+      <span class="post-name"><%= @post.title %></span> by <span class="author-name"><%= @user.name %></span>
+    </div>
+    <div class="post-stats">
+      Comments: <%= @post.comments.count %> | Likes: <%= @post.likes.count %>
+    </div>
   </div>
-  
+  <div class="post-content">
+    <%= @post.text %>
+  </div>
+</div>
+
+<div class="comments-container">
+  <% @comments.each do |comment| %>
+  <%= "Comments" %>
+    <div class="comment">
+      <span class="comment-author"><%= comment.author.name %>:</span>
+      <span class="comment-text"><%= comment.text %></span>
+    </div>
+  <% end %>
+</div>
+
+<%= form_with(model: [ @user, @post, @post.comments.new ], local: true) do |form| %>
+  <div class="post-detail-row">
+    <%= form.label :text, "Publish your Comment" %>
+    <%= form.text_area :text, class: "custom-input", placeholder: "Write your comment here" %>
+  </div>
+  <%= form.submit "Publish Comment", class: "custom-button" %>
+<% end %>
+
+<%= form_with url: user_post_likes_path(@post.author, @post) do |form| %>
+  <%= form.submit 'Like', class: 'custom-button' %>
+<% end %>
+<% flash.each do |key, message| %>
+  <div class="<%= key %>"><%= message %></div>
 <% end %>

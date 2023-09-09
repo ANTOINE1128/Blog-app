@@ -1,34 +1,23 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  it 'is valid with valid attributes' do
-    user = User.new(name: 'John', posts_counter: 0)
-    expect(user).to be_valid
-  end
-
-  it 'is not valid without a name' do
-    user = User.new(name: nil, posts_counter: 0)
+  it 'validates presence of name' do
+    user = User.new(name: nil)
     expect(user).to_not be_valid
   end
 
-  it 'is not valid with a negative posts_counter' do
-    user = User.new(name: 'Jane', posts_counter: -1)
+  it 'validates posts_counter is greater than or equal to 0' do
+    user = User.new(posts_counter: -1)
     expect(user).to_not be_valid
   end
 
-  it 'is valid with a positive posts_counter' do
-    user = User.new(name: 'Alice', posts_counter: 5)
-    expect(user).to be_valid
-  end
-
-  describe '#recent_posts' do
-    it 'returns all posts if the limit is greater than total posts' do
-      user = User.create(name: 'Eve', posts_counter: 0)
-      user.posts.create(title: 'Post 1', text: 'This is post 1.')
-      user.posts.create(title: 'Post 2', text: 'This is post 2.')
-
-      recent_posts = user.return_three_most_recent_post(10)
-      expect(recent_posts).to eq(user.posts.order(created_at: :desc).limit(10))
+  it 'returns three most recent posts' do
+    user = User.create!(name: 'John', posts_counter: 0)
+    3.times.map do
+      Post.create!(author: user, title: 'Old post', comments_counter: 0, likes_counter: 0, created_at: 1.day.ago)
     end
+    new_posts = 3.times.map { Post.create!(author: user, title: 'New post', comments_counter: 0, likes_counter: 0) }
+
+    expect(user.three_most_recent_posts).to eq new_posts.reverse
   end
 end
