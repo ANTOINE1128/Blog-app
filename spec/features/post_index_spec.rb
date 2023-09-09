@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature 'User Posts index page', type: :feature do
   before do
-    @user = User.create(name: 'Marco', photo: 'https://image.com/image.jpg', bio: 'Text for Bio', posts_counter: 0)
+    @user = User.create(name: 'tony', photo: 'https://image.com/image.jpg', bio: 'Text for Bio', posts_counter: 0)
     @post1 = Post.create(title: 'Post 1', text: 'Text for post...', author: @user, comments_counter: 0,
                          likes_counter: 0)
     @post2 = Post.create(title: 'Post 2', text: 'Text for post...', author: @user, comments_counter: 0,

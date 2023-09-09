@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature 'User index page', type: :feature do
   before do
-    @user1 = User.create(name: 'Marco',
+    @user1 = User.create(name: 'tony',
                          photo: 'https://image.com/image.jpg', bio: 'Text for Bio', posts_counter: 0)
 
     3.times do |i|

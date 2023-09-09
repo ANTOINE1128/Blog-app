@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.feature 'Post show page', type: :feature do
   before do
-    @user = User.create(name: 'Marco', photo: 'https://image.com/image.jpg', bio: 'Text for Bio', posts_counter: 0)
-    @post = Post.create(title: 'Post 1', text: 'Text for post...', author: @user, comments_counter: 0, likes_counter: 0)
+    @user = User.create(name: 'tony', photo: 'https://image.com/image.jpg', bio: 'Text Bio', posts_counter: 0)
+    @post = Post.create(title: 'Post 1', text: 'post...', author: @user, comments_counter: 0, likes_counter: 0)
     @comment1 = Comment.create(author: @user, post: @post, text: 'comment 1')
     @comment2 = Comment.create(author: @user, post: @post, text: 'comment 2')
   end
@@ -26,8 +26,8 @@ end
 
 RSpec.feature 'Post show page', type: :feature do
   before do
-    @user = User.create(name: 'Marco', photo: 'https://image.com/image.jpg', bio: 'Text for Bio', posts_counter: 0)
-    @post = Post.create(title: 'Post 1', text: 'Text for post...', author: @user, comments_counter: 0, likes_counter: 0)
+    @user = User.create(name: 'tony', photo: 'https://image.com/image.jpg', bio: 'Text Bio', posts_counter: 0)
+    @post = Post.create(title: 'Post 1', text: 'post...', author: @user, comments_counter: 0, likes_counter: 0)
     @comment1 = Comment.create(author: @user, post: @post, text: 'comment 1')
     @comment2 = Comment.create(author: @user, post: @post, text: 'comment 2')
   end

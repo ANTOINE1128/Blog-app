@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature 'User show page', type: :feature do
   before do
-    @user = User.create(name: 'Marco', photo: 'https://image.com/image.jpg', bio: 'Text for Bio', posts_counter: 0)
+    @user = User.create(name: 'tony', photo: 'https://image.com/image.jpg', bio: 'Text for Bio', posts_counter: 0)
     5.times do |i|
       Post.create(title: "Post #{i + 1}", author: @user, comments_counter: 0, likes_counter: 0)
     end
