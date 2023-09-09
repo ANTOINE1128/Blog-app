@@ -16,7 +16,7 @@ RSpec.feature 'User index page', type: :feature do
   scenario 'I can see the username of all other users' do
     visit users_path
 
-    expect(page).to have_content('Marco')
+    expect(page).to have_content('tony')
     expect(page).to have_content('Tumaini')
   end
 
@@ -36,8 +36,8 @@ RSpec.feature 'User index page', type: :feature do
 
   scenario "When I click on a user, I am redirected to that user's show page" do
     visit users_path
-    find('.user-row-link', text: 'Marco').click
+    find('.user-row-link', text: 'Tumaini').click
 
-    expect(page.current_path).to eq(user_path(@user1))
+    expect(page.current_path).to eq(user_path(@user2))
   end
 end
