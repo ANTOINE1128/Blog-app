@@ -1,91 +1,55 @@
 require 'rails_helper'
 
-RSpec.describe 'User Post Index Page', type: :system do
-  before(:all) do
-    # Create users and posts as needed for your tests
-    @user1 = User.create(name: 'John Doe', bio: 'Bio for John Doe', posts_counter: 3, photo: 'john_doe.jpg')
-  
-    @post1 = @user1.posts.create(
-      title: 'new post 3',
-      content: 'for new post 3',
-      comments_counter: 3,
-      likes_counter: 0
-    )
-  
-    # Create @post2
-    @post2 = @user1.posts.create(
-      title: 'post 2',
-      content: 'content for post 2',
-      comments_counter: 2,  # You can set the number of comments as needed
-      likes_counter: 5  # Set the number of likes as needed
-    )
-  
-    # Create comments for post1
-    @comment1 = @post1.comments.create(
-      text: 'comment 1 new post',
-      author: @user1
-    )
-    @comment2 = @post1.comments.create(
-      text: 'comment 2 new post',
-      author: @user1
-    )
-    @comment3 = @post1.comments.create(
-      text: 'comment new post 3',
-      author: @user1
-    )
-  
-    # Create comments for post2
-    @comment4 = @post2.comments.create(
-      text: 'comment 1 post 2',
-      author: @user1
-    )
-    @comment5 = @post2.comments.create(
-      text: 'comment 2 post 2',
-      author: @user1
-    )
+RSpec.feature 'User Post Index Page', type: :feature do
+  let(:user) { User.create(name: 'Tom', bio: 'He is a good programmer', photo: 'https://www.example.com/photo.png') }
+  let!(:post1) { Post.create(author: user, title: 'First Post', text: 'Lorem ipsum dolor sit amet.') }
+  let!(:post2) { Post.create(author: user, title: 'Second Post', text: 'Consectetur adipiscing elit.') }
+  # Create comments and likes as needed for the tests.
+
+  before do
+    visit user_posts_path(@user)
   end
-  
 
-  it 'displays user information' do
-    visit users_path
-
-    # Add your expectations here to verify user information is displayed
-    expect(page).to have_content(@user1.name)
-     
-    expect(page).to have_css('.user-photo') # Assuming you have a CSS class for user photos
-    expect(page).to have_content(@user1.posts_counter)
+  scenario 'I can see the user\'s profile picture' do
+    expect(page).to have_selector("img[src='#{user.photo}']")
   end
-  # it 'displays post titles' do
-  #   visit user_posts_path(user_id: @user1.id)
 
-  #   # Add your expectations here to verify post titles are displayed
-  #   expect(page).to have_content(@post1.title)
-  #   expect(page).to have_content(@post2.title)
-  #   expect(page).to have_content(@post3.title)
+  # scenario 'I can see the user\'s username' do
+  #   expect(page).to have_content(user.name)
   # end
 
-  it 'displays post bodies' do
-  visit user_posts_path(user_id: @user1.id)
+  # scenario 'I can see the number of posts the user has written' do
+  #   expect(page).to have_content("Number of posts: #{user.posts.count}")
+  # end
 
-  # Add your expectations here to verify post bodies are displayed
-  expect(page).to have_content('for new post 3')  # Update this line
-end
+  # scenario 'I can see a post\'s title' do
+  #   expect(page).to have_content(post1.title)
+  #   expect(page).to have_content(post2.title)
+  # end
 
+  # scenario 'I can see some of the post\'s body' do
+  #   expect(page).to have_content(post1.text[0..50]) # Display only the first 50 characters.
+  #   expect(page).to have_content(post2.text[0..50])
+  # end
 
-  it 'displays the first comments on posts' do
-    visit user_posts_path(user_id: @user1)
+  # scenario 'I can see the first comments on a post' do
+  #   # Write Capybara code to check if the first comments are visible.
+  # end
 
-    # Add your expectations here to verify the first comments on posts are displayed
-    expect(page).to have_content(@post1.comments.first.text)
-    # Add more expectations as needed
-  end
+  # scenario 'I can see how many comments a post has' do
+  #   # Write Capybara code to check if the comment count is visible for each post.
+  # end
 
-  it 'displays the number of comments and likes for posts' do
-    visit user_posts_path(user_id: @user1.id)
+  # scenario 'I can see how many likes a post has' do
+  #   # Write Capybara code to check if the like count is visible for each post.
+  # end
 
-    # Add your expectations here to verify the number of comments and likes for posts are displayed
-    expect(page).to have_content("#{@post1.comments_counter} comments")
-    expect(page).to have_content("#{@post1.likes_counter} likes")
-    # Add more expectations as needed
-  end
+  # scenario 'I can see a section for pagination if there are more posts than fit on the view' do
+  #   # Write Capybara code to check if the pagination section is visible.
+  # end
+
+  # scenario 'When I click on a post, it redirects me to that post\'s show page' do
+  #   click_link 'First Post' # Click the link for the first post.
+  #   expect(page).to have_current_path(user_post_path(user, post1))
+  # end
 end

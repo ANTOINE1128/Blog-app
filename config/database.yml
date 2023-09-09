@@ -23,7 +23,7 @@ default: &default
 
 development:
   <<: *default
-  database: blog_rails_development
+  database: blogs_rails_development
   username: postgres
   password: <%= ENV["HELLORAILS_DATABASE_PASSWORD"] %>
 
@@ -59,7 +59,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: blog_rails_tests
+  database: blogs_rails_tests
   username: postgres
   password: <%= ENV["HELLORAILS_DATABASE_PASSWORD"] %>
 
@@ -86,6 +86,6 @@ test:
 #
 production:
   <<: *default
-  database: blog_rails_production
+  database: blogs_rails_production
   username: postgres
   password: <%= ENV["HELLORAILS_DATABASE_PASSWORD"] %>

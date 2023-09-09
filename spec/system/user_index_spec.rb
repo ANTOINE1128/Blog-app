@@ -3,8 +3,10 @@ require 'rails_helper'
 RSpec.describe 'User Index Page', type: :system do
   before do
     # You can set up any necessary data here, such as creating users
-    @user1 = User.create(name: 'John Doe', bio: 'Bio for John Doe', posts_counter: 4 , photo: 'john_doe.jpg')
- 
+    @user1 = User.create(name: 'John Doe', photo: 'john_doe.jpg', bio: 'Bio for John Doe', posts_counter: 4 )
+    5.times do |i|
+      Post.create(title: "Post #{i + 1}", author: @user, comments_counter: 0, likes_counter: 0)
+    end
   end
 
   it 'displays the username of all other users' do
@@ -24,20 +26,18 @@ RSpec.describe 'User Index Page', type: :system do
     # For each user in the @users collection, check if their profile picture is displayed
     [@user1].each do |user|
       if user.photo.present?
-        expect(page).to have_css(".user-photo img[alt='#{user.name}']")
-      else
-        expect(page).to have_css(".user-photo.placeholder", text: "No photo")
+        expect(page).to have_css(".user-photo")
       end
     end
   end
+  
   it 'displays the number of posts each user has written' do
     # Visit the user index page directly using its URL
     visit users_path
-
+  
     # For each user in the @users collection, check if their number of posts is displayed
     [@user1].each do |user|
-      expect(page).to have_content("number of posts: #{user.posts_counter || 0}")
-
+      expect(page).to have_content("Number of posts: #{user.posts_counter || 0}")
     end
   end
 

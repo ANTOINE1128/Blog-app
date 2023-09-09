@@ -1,19 +1,13 @@
 class LikesController < ApplicationController
-  before_action :like_params, only: [:create]
-
   def create
-    @user = User.includes(posts: :comments).find(params[:user_id])
-    @post = Post.includes(:comments).find(params[:post_id])
-    @like = Like.new(author: @user, post: @post)
-    if @like.save
-      flash[:notice] = 'Like was successfully created.'
-    else
-      flash[:alert] = 'Failed to add like.'
-    end
-    redirect_to user_post_path(@user, @post)
-  end
+    @post = Post.find(params[:post_id])
+    @user = current_user
+    @like = Like.new(author_id: @user.id, post_id: @post.id)
 
-  def like_params
-    params.require(:like).permit(:author_id) # Make sure you have :author_id in the permit list.
+    if @like.save
+      redirect_to user_post_path(@user, @post), notice: 'Like successfully created'
+    else
+      redirect_to user_post_path(@user, @post), alert: 'There was an error creating the Like'
+    end
   end
 end
