@@ -20,6 +20,10 @@
       <span class="comment-author"><%= comment.author.name %>:</span>
       <span class="comment-text"><%= comment.text %></span>
     </div>
+    <% if can? :destroy, @comment %>
+  <%= link_to 'Delete', comment_path(@comment), method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
+
   <% end %>
 </div>
 
@@ -36,4 +40,7 @@
 <% end %>
 <% flash.each do |key, message| %>
   <div class="<%= key %>"><%= message %></div>
+<% end %>
+<% if can? :destroy, @post %>
+  <%= link_to 'Delete', post_path(@post), method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>
