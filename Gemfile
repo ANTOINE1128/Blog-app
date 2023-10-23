@@ -56,7 +56,7 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
-
+gem 'devise'
 gem 'rails-controller-testing'
 
 group :development do
